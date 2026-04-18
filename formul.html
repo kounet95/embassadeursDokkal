@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme Ambassadeur — DOKKAL Guinée</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-hero: #060d18;
+  --bg-hero-2: #081a10;
+  --vert: #0a7c4e;
+  --vert-2: #0f9e65;
+  --vert-glow: rgba(10, 124, 78, 0.4);
+  --or: #d4a43e;
+  --or-2: #f5c842;
+  --or-glow: rgba(212, 164, 62, 0.3);
+  --bg-light: #f7f9f8;
+  --white: #ffffff;
+  --texte: #0f172a;
+  --texte-muted: #64748b;
+  --border: #e2e8f0;
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-light);
+  color: var(--texte);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100svh;
+  background: linear-gradient(145deg, var(--bg-hero) 0%, #0a1a2e 40%, var(--bg-hero-2) 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 100px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* mesh grid */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(10,124,78,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,124,78,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* radial glow */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(10,124,78,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* floating orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: drift 8s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(10,124,78,0.25) 0%, transparent 70%);
+  top: -80px; right: -80px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(212,164,62,0.2) 0%, transparent 70%);
+  bottom: 60px; left: -60px;
+  animation-delay: -3s;
+}
+
+.orb-3 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(10,124,78,0.15) 0%, transparent 70%);
+  bottom: 30%;
+  right: 10%;
+  animation-delay: -5s;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  33% { transform: translateY(-20px) scale(1.05); }
+  66% { transform: translateY(12px) scale(0.97); }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10,124,78,0.2);
+  border: 1px solid rgba(10,124,78,0.4);
+  color: #6ee7b7;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero h1 {
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.hero h1 .brand {
+  background: linear-gradient(135deg, #34d399 0%, var(--or-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero h1 .accent { color: var(--or-2); -webkit-text-fill-color: var(--or-2); }
+
+.hero-desc {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.65);
+  max-width: 520px;
+  margin: 0 auto 48px;
+  line-height: 1.75;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 20px 28px;
+  min-width: 120px;
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: default;
+}
+
+.stat-glass:hover {
+  border-color: rgba(10,124,78,0.5);
+  transform: translateY(-4px);
+}
+
+.stat-glass .num {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--or-2) 0%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-glass .lbl {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation: fadeInUp 1s ease 1s both;
+  z-index: 2;
+}
+
+.scroll-arrow {
+  width: 20px; height: 20px;
+  border-right: 2px solid rgba(255,255,255,0.3);
+  border-bottom: 2px solid rgba(255,255,255,0.3);
+  transform: rotate(45deg);
+  animation: bounce-arrow 2s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(4px); }
+}
+
+/* ===== TICKER ===== */
+.ticker-wrap {
+  background: #0a1a0f;
+  border-top: 1px solid rgba(10,124,78,0.25);
+  border-bottom: 1px solid rgba(10,124,78,0.25);
+  padding: 14px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-wrap::before,
+.ticker-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ticker-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, #0a1a0f, transparent);
+}
+
+.ticker-wrap::after {
+  right: 0;
+  background: linear-gradient(-90deg, #0a1a0f, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: ticker-move 40s linear infinite;
+}
+
+.ticker-track:hover { animation-play-state: paused; }
+
+@keyframes ticker-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+}
+
+.ticker-item span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticker-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--vert-2);
+  flex-shrink: 0;
+}
+
+.ticker-sep {
+  color: rgba(10,124,78,0.6);
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ===== SECTION WRAPPER ===== */
+.section {
+  padding: 72px 24px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vert);
+  margin-bottom: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--vert);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--texte);
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  font-size: 15px;
+  color: var(--texte-muted);
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+/* ===== AVANTAGES CARDS ===== */
+.avantages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.avantage-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  cursor: default;
+}
+
+.avantage-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--vert), var(--vert-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.avantage-card:hover {
+  border-color: rgba(10,124,78,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(10,124,78,0.1);
+}
+
+.avantage-card:hover::before { transform: scaleX(1); }
+
+.avantage-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, #e8f5ef, #d0ead9);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.avantage-icon svg {
+  width: 24px; height: 24px;
+  stroke: var(--vert);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.avantage-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--texte);
+}
+
+.avantage-card p {
+  font-size: 13px;
+  color: var(--texte-muted);
+  line-height: 1.6;
+}
+
+.highlight { color: var(--vert); font-weight: 600; }
+
+/* ===== COMMISSION BOX ===== */
+.calc-box {
+  background: linear-gradient(135deg, #1a0f00 0%, #2a1800 100%);
+  border: 1px solid rgba(212,164,62,0.3);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(212,164,62,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.calc-box h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--or-2);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calc-box h3 svg {
+  width: 22px; height: 22px;
+  stroke: var(--or-2);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(212,164,62,0.12);
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  gap: 12px;
+}
+
+.calc-row:last-child {
+  border-bottom: none;
+  font-weight: 700;
+  font-size: 15px;
+  color: white;
+  margin-top: 4px;
+}
+
+.calc-row span:last-child {
+  color: var(--or-2);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ===== ÉTAPES ===== */
+.etapes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 56px;
+  position: relative;
+}
+
+.etapes::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 32px;
+  bottom: 32px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--vert), rgba(10,124,78,0.1));
+}
+
+.etape {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px 0;
+}
+
+.etape-num {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--vert), var(--vert-2));
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 4px var(--bg-light), 0 0 0 6px rgba(10,124,78,0.2);
+}
+
+.etape-content {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.etape-content h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--texte);
+}
+
+.etape-content p {
+  font-size: 13px;
+  color: var(--texte-muted);
+  line-height: 1.65;
+}
+
+/* ===== FORMULAIRE ===== */
+.form-section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px 36px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+}
+
+.form-header {
+  margin-bottom: 32px;
+}
+
+.form-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--texte);
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  font-size: 14px;
+  color: var(--texte-muted);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field.full { grid-column: 1 / -1; }
+
+label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: #f8fafc;
+  color: var(--texte);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--vert);
+  box-shadow: 0 0 0 3px rgba(10,124,78,0.12);
+  background: var(--white);
+}
+
+input::placeholder, textarea::placeholder { color: #cbd5e1; }
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  background: #f0faf5;
+  border: 1px solid rgba(10,124,78,0.15);
+  border-radius: 12px;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.checkbox-row input[type=checkbox] {
+  width: 18px; height: 18px;
+  margin-top: 1px;
+  flex-shrink: 0;
+  accent-color: var(--vert);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.checkbox-row label {
+  font-size: 12px;
+  color: var(--texte-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--vert) 0%, var(--vert-2) 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(10,124,78,0.35);
+}
+
+.btn-submit:hover {
+  opacity: 0.92;
+  box-shadow: 0 8px 28px rgba(10,124,78,0.45);
+  transform: translateY(-1px);
+}
+
+.btn-submit:active { transform: scale(0.99); }
+
+.btn-submit svg {
+  width: 18px; height: 18px;
+  stroke: white;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s;
+}
+
+.btn-submit:hover svg { transform: translateX(3px); }
+
+.form-note {
+  font-size: 12px;
+  color: var(--texte-muted);
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.6;
+}
+
+/* ===== SUCCESS ===== */
+.success-msg {
+  display: none;
+  text-align: center;
+  padding: 40px 32px;
+  background: linear-gradient(135deg, #e8f5ef, #d4ede1);
+  border: 1px solid rgba(10,124,78,0.2);
+  border-radius: 20px;
+  margin-top: 24px;
+  animation: fadeInUp 0.4s ease both;
+}
+
+.success-icon {
+  width: 64px; height: 64px;
+  background: var(--vert);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 24px rgba(10,124,78,0.35);
+}
+
+.success-icon svg {
+  width: 32px; height: 32px;
+  stroke: white;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.success-msg h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--vert);
+  margin-bottom: 10px;
+}
+
+.success-msg p {
+  font-size: 14px;
+  color: #4a7c62;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #070f18;
+  border-top: 1px solid rgba(10,124,78,0.15);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 13px;
+}
+
+footer a { color: var(--or-2); text-decoration: none; transition: opacity 0.2s; }
+footer a:hover { opacity: 0.75; }
+
+.footer-brand {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #34d399, var(--or-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-inner > * {
+  animation: fadeInUp 0.7s ease both;
+}
+
+.hero-inner > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-inner > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-inner > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-inner > *:nth-child(4) { animation-delay: 0.55s; }
+
+/* ===== SECTION DIVIDER ===== */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 24px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 560px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-section { padding: 28px 20px; }
+  .hero-stats { gap: 10px; }
+  .stat-glass { padding: 16px 20px; min-width: 100px; }
+  .stat-glass .num { font-size: 26px; }
+  .etapes::before { left: 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+  .orb { animation: none; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .hero-inner > * { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Réseau IST Guinée · Programme Ambassadeur
+    </div>
+
+    <h1>
+      Rejoins le réseau<br>
+      <span class="brand">DOKKAL</span><br>
+      <span class="accent">en Guinée</span>
+    </h1>
+
+    <p class="hero-desc">
+      Tu travailles dans une pharmacie, un hôpital ou un labo ?<br>
+      Aide-nous à digitaliser les structures sanitaires guinéennes<br>
+      et gagne une <strong style="color:rgba(255,255,255,0.9)">commission chaque mois.</strong>
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat-glass">
+        <div class="num">15%</div>
+        <div class="lbl">Commission mensuelle</div>
+      </div>
+      <div class="stat-glass">
+        <div class="num">Gratuit</div>
+        <div class="lbl">Boutique à vie</div>
+      </div>
+      <div class="stat-glass">
+        <div class="num">IST</div>
+        <div class="lbl">Réseau de confiance</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Découvrir</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker-wrap" aria-label="Structures sanitaires partenaires" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- Set 1 -->
+    <div class="ticker-item">
+      <span><div class="ticker-dot"></div>Pharmacie Centrale de Conakry</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Ignace Deen</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Clinique Ambroise Paré</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Laboratoire Eurafrica</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Donka</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Pharmacie de la Cathédrale</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Clinique Pasteur Conakry</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Centre de Santé Matam</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Sino-Guinéen</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Pharmacie Kipé Plus</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Clinique Nongo</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Centre Médical Dixinn</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Régional Kindia</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Laboratoire Bio-Santé</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Pharmacie du Marché Niger</span>
+      <div class="ticker-sep">·</div>
+    </div>
+    <!-- Set 2 (duplicate for seamless loop) -->
+    <div class="ticker-item">
+      <span><div class="ticker-dot"></div>Pharmacie Centrale de Conakry</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Ignace Deen</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Clinique Ambroise Paré</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Laboratoire Eurafrica</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Donka</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Pharmacie de la Cathédrale</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Clinique Pasteur Conakry</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Centre de Santé Matam</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Sino-Guinéen</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Pharmacie Kipé Plus</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Clinique Nongo</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Centre Médical Dixinn</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Hôpital Régional Kindia</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Laboratoire Bio-Santé</span>
+      <div class="ticker-sep">·</div>
+      <span><div class="ticker-dot"></div>Pharmacie du Marché Niger</span>
+      <div class="ticker-sep">·</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AVANTAGES ===== -->
+<div class="section">
+
+  <div class="reveal">
+    <div class="section-eyebrow">Ce que tu gagnes</div>
+    <h2 class="section-title">Des avantages concrets,<br>dès le premier mois.</h2>
+    <p class="section-sub">En tant qu'ambassadeur officiel DOKKAL, tu bénéficies de :</p>
+  </div>
+
+  <div class="avantages">
+    <div class="avantage-card reveal reveal-delay-1">
+      <div class="avantage-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v1m0 8v1M9.5 9.5c0-1.1.9-2 2.5-2s2.5.9 2.5 2-1.1 2-2.5 2-2.5.9-2.5 2 .9 2 2.5 2 2.5-.9 2.5-2"/></svg>
+      </div>
+      <h3>Commission mensuelle</h3>
+      <p><span class="highlight">15% chaque mois</span> sur chaque structure sanitaire que tu fais signer, tant que le partenariat dure.</p>
+    </div>
+    <div class="avantage-card reveal reveal-delay-2">
+      <div class="avantage-icon">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+      <h3>Boutique gratuite à vie</h3>
+      <p>Accès au plan Starter DOKKAL <span class="highlight">gratuit à vie</span> pour toi ou ton activité personnelle.</p>
+    </div>
+    <div class="avantage-card reveal reveal-delay-3">
+      <div class="avantage-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0112 0v1"/><path d="M17 11l2 2 4-4"/></svg>
+      </div>
+      <h3>Titre officiel</h3>
+      <p>Cité comme <span class="highlight">Ambassadeur DOKKAL</span> sur la plateforme, visible par toute la communauté.</p>
+    </div>
+    <div class="avantage-card reveal reveal-delay-4">
+      <div class="avantage-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <h3>Réseau IST</h3>
+      <p>Fais partie d'un réseau d'anciens de l'IST qui <span class="highlight">transforment le secteur sanitaire</span> guinéen.</p>
+    </div>
+  </div>
+
+  <!-- SIMULATEUR -->
+  <div class="calc-box reveal">
+    <h3>
+      <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      Combien peux-tu gagner ?
+    </h3>
+    <div class="calc-row">
+      <span>1 pharmacie partenaire (plan Starter)</span>
+      <span>37 500 GNF/mois</span>
+    </div>
+    <div class="calc-row">
+      <span>3 pharmacies partenaires</span>
+      <span>112 500 GNF/mois</span>
+    </div>
+    <div class="calc-row">
+      <span>1 hôpital (plan Pro)</span>
+      <span>75 000 GNF/mois</span>
+    </div>
+    <div class="calc-row">
+      <span>5 structures mixtes</span>
+      <span>~300 000 GNF/mois</span>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin: 0 0 56px;">
+
+  <!-- ÉTAPES -->
+  <div class="reveal">
+    <div class="section-eyebrow">Comment ça marche</div>
+    <h2 class="section-title">4 étapes simples.</h2>
+    <p class="section-sub" style="margin-bottom: 32px;">De ton inscription à ta première commission.</p>
+  </div>
+
+  <div class="etapes">
+    <div class="etape reveal reveal-delay-1">
+      <div class="etape-num">1</div>
+      <div class="etape-content">
+        <h4>Tu remplis ce formulaire</h4>
+        <p>Alpha Oumar Chef de département TEB 🤣🤣🤣😂 (cérémonie d'accueil P11) te contacte dans les 48h via WhatsApp pour une présentation rapide de 15 minutes.</p>
+      </div>
+    </div>
+    <div class="etape reveal reveal-delay-2">
+      <div class="etape-num">2</div>
+      <div class="etape-content">
+        <h4>Tu reçois ton kit ambassadeur</h4>
+        <p>Flyer, script de présentation, accès démo — tout ce qu'il te faut pour convaincre ta structure.</p>
+      </div>
+    </div>
+    <div class="etape reveal reveal-delay-3">
+      <div class="etape-num">3</div>
+      <div class="etape-content">
+        <h4>Tu introduis DOKKAL à ta direction</h4>
+        <p>Tu utilises ta relation de confiance. Alpha peut venir en présentiel ou Teams pour appuyer.</p>
+      </div>
+    </div>
+    <div class="etape reveal reveal-delay-4">
+      <div class="etape-num">4</div>
+      <div class="etape-content">
+        <h4>Tu touches ta commission chaque mois</h4>
+        <p>Dès que ta structure est active sur DOKKAL, ta commission tombe automatiquement.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-section reveal" id="formulaire">
+    <div class="form-header">
+      <h2>Rejoins le programme</h2>
+      <p>Remplis ce formulaire — Alpha te contacte sous 48h via WhatsApp</p>
+    </div>
+
+    <form onsubmit="return soumettreFormulaire()">
+    <div class="form-grid">
+      <div class="field">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" placeholder="Mamadou" autocomplete="given-name" />
+      </div>
+      <div class="field">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" placeholder="Diallo" autocomplete="family-name" />
+      </div>
+      <div class="field">
+        <label for="phone">WhatsApp</label>
+        <input type="tel" id="phone" placeholder="+224 6XX XXX XXX" autocomplete="tel" />
+      </div>
+      <div class="field">
+        <label for="email">Email (optionnel)</label>
+        <input type="email" id="email" placeholder="ton@email.com" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="promo">Promotion IST</label>
+        <input type="text" id="promo" placeholder="ex: 2018, 2020..." />
+      </div>
+      <div class="field">
+        <label for="poste">Ton poste actuel</label>
+        <input type="text" id="poste" placeholder="Pharmacien, Technicien labo..." />
+      </div>
+      <div class="field full">
+        <label for="type_structure">Type de structure</label>
+        <select id="type_structure">
+          <option value="">-- Sélectionner --</option>
+          <option>Pharmacie</option>
+          <option>Hôpital public</option>
+          <option>Clinique privée</option>
+          <option>Laboratoire d'analyses</option>
+          <option>Cabinet médical</option>
+          <option>Centre de santé</option>
+          <option>Autre structure sanitaire</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="nom_structure">Nom de ta structure</label>
+        <input type="text" id="nom_structure" placeholder="ex: Pharmacie Centrale de Conakry" />
+      </div>
+      <div class="field full">
+        <label for="quartier">Quartier / Commune</label>
+        <input type="text" id="quartier" placeholder="ex: Ratoma, Dixinn, Matam, Kipé..." />
+      </div>
+      <div class="field full">
+        <label for="acces">Accès à la direction</label>
+        <select id="acces">
+          <option value="">-- Sélectionner --</option>
+          <option>Oui, j'ai un accès direct à la direction</option>
+          <option>Oui, je peux faciliter une introduction</option>
+          <option>Pas encore, mais je peux essayer</option>
+          <option>Non, mais je connais quelqu'un qui peut</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="message">Message libre (optionnel)</label>
+        <textarea id="message" placeholder="Parle-nous de ton réseau, de ta situation, ou comment tu veux nous aider..."></textarea>
+      </div>
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="agree" required />
+      <label for="agree">J'accepte d'être contacté par Alpha Oumar Diallo via WhatsApp ou email pour discuter du programme ambassadeur DOKKAL. Mes informations restent confidentielles.</label>
+    </div>
+
+    <button class="btn-submit" type="submit">
+      Envoyer ma candidature
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <p class="form-note">Réponse garantie sous 48h · <a href="mailto:kounetdiallo95@gmail.com" style="color:var(--vert)">kounetdiallo95@gmail.com</a> · +1 514 238-3086</p>
+
+    <div class="success-msg" id="success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Candidature reçue !</h3>
+      <p>Merci ! Alpha te contacte sur WhatsApp dans les prochaines 48h pour discuter du programme. Bienvenue dans le réseau DOKKAL Guinée.</p>
+    </div>
+    </form>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">DOKKAL</div>
+  <p>app.dokkal.shop · <a href="mailto:kounetdiallo95@gmail.com">kounetdiallo95@gmail.com</a> · +1 514 238-3086</p>
+  <p style="margin-top: 8px; font-size: 11px;">Programme ambassadeur — Réseau IST Guinée · 2026</p>
+</footer>
+
+<script>
+// Scroll reveal
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  if (!window.IntersectionObserver) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => observer.observe(el));
+})();
+
+// Form submit
+function soumettreFormulaire() {
+  const prenom = document.getElementById('prenom').value.trim();
+  const nom = document.getElementById('nom').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const promo = document.getElementById('promo').value.trim();
+  const poste = document.getElementById('poste').value.trim();
+  const type_structure = document.getElementById('type_structure').value;
+  const nom_structure = document.getElementById('nom_structure').value.trim();
+  const quartier = document.getElementById('quartier').value.trim();
+  const acces = document.getElementById('acces').value;
+  const message = document.getElementById('message').value.trim();
+  const agree = document.getElementById('agree').checked;
+
+  if (!prenom || !nom) { alert('Merci de renseigner ton prénom et nom.'); return false; }
+  if (!phone) { alert('Merci de renseigner ton numéro WhatsApp.'); return false; }
+  if (!agree) { alert("Merci d'accepter les conditions pour continuer."); return false; }
+
+  // Collect form data
+  const formData = {
+    prenom,
+    nom,
+    phone,
+    email,
+    promo,
+    poste,
+    type_structure,
+    nom_structure,
+    quartier,
+    acces,
+    message
+  };
+
+  // Send to Formspree
+  fetch('https://formspree.io/f/mjgjwjbp', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => {
+    if (response.ok) {
+      const btn = document.querySelector('.btn-submit');
+      btn.style.display = 'none';
+      document.querySelector('.checkbox-row').style.display = 'none';
+      const success = document.getElementById('success');
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+    }
+  })
+  .catch(error => {
+    alert('Erreur réseau. Veuillez réessayer.');
+  });
+
+  return false;
+}
+</script>
+
+</body>
+</html>
